@@ -1,4 +1,3 @@
-
 let cartIcon = document.querySelector("#bag-icon");
 let cart = document.querySelector(".cart");
 let closeCart = document.querySelector("#close-cart");
@@ -64,13 +63,13 @@ function addProductToCart(title, price, itemImg){
   var cartShopBox = document.createElement("div");
   cartShopBox.classList.add('cart-box');
   var cartItems = document.getElementsByClassName('cart-content');
-  // var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
-  // for (var i =0; i< cartItemsNames.length; i++){
-  //   if(cartItemsNames[i].innerText == title){
-  //     alert("Item already in the cart");
-  //     return;
-  //   }
-   
+  var cartItemsNames = document.getElementsByClassName('cart-product-title');
+  for (var i =0; i< cartItemsNames.length; i++){
+    if(cartItemsNames[i].innerText == title){
+      alert("Item already in the cart");
+      return;
+    }
+  }
   
   var cartBoxContent = `
                         <img src="${itemImg}" alt="" class="cart-image">
@@ -81,7 +80,7 @@ function addProductToCart(title, price, itemImg){
                         </div>
                         <i class='bx bxs-trash-alt cart-remove'></i>
                         `;
-  cartShopBox.innerHTML = cartBoxContent
+  cartShopBox.innerHTML = cartBoxContent;
   cartItems.append(cartShopBox);
   cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem)
   cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
